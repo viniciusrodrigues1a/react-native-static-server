@@ -1,24 +1,25 @@
+# :warning: This lib has been forked for personal usage and won't be maintaned.
 
-# react-native-static-server
+## react-native-static-server
 
 A cross platform component for serving static assets with React Native.
 
-## Getting started
+### Getting started
 
 `$ npm install react-native-static-server --save`
 
-### Installation
+#### Installation
 
 From react-native 0.60 autolinking will take care of the link step but don't forget to run pod install
 
 `$ react-native link react-native-static-server`
 
-## Usage
+### Usage
 
 Declare the `StaticServer` with a port or use the default `0` to pick a random available port.
 
 ```javascript
-import StaticServer from 'react-native-static-server';
+import StaticServer from "react-native-static-server";
 
 let server = new StaticServer(8080);
 
@@ -31,7 +32,7 @@ server.start().then((url) => {
 server.stop();
 
 // Check if native server running
-const isRunning = await server.isRunning()
+const isRunning = await server.isRunning();
 // isRunning - true/false
 ```
 
@@ -42,11 +43,11 @@ For instance, using [react-native-fs](https://github.com/johanneslumpe/react-nat
 #### Default (document directory)
 
 ```javascript
-import StaticServer from 'react-native-static-server';
-import RNFS from 'react-native-fs';
+import StaticServer from "react-native-static-server";
+import RNFS from "react-native-fs";
 
 // create a path you want to write to
-let path = RNFS.DocumentDirectoryPath + '/www';
+let path = RNFS.DocumentDirectoryPath + "/www";
 
 let server = new StaticServer(8080, path);
 ```
@@ -66,11 +67,11 @@ In XCode, `Project Navigator` right click in the folder project → `Add files t
 When the app gets bundled, this folder will be next to the compiled app, so using `MainBundlePath` property from `react-native-fs` you can access to the directory.
 
 ```javascript
-import StaticServer from 'react-native-static-server';
-import RNFS from 'react-native-fs';
+import StaticServer from "react-native-static-server";
+import RNFS from "react-native-fs";
 
 // path where files will be served from (index.html here)
-let path = RNFS.MainBundlePath + '/www';
+let path = RNFS.MainBundlePath + "/www";
 
 let server = new StaticServer(8080, path);
 ```
@@ -78,32 +79,31 @@ let server = new StaticServer(8080, path);
 If the server should only be accessible from within the app, set `localOnly` to `true`
 
 ```javascript
-import StaticServer from 'react-native-static-server';
+import StaticServer from "react-native-static-server";
 
 // Just set options with defaults
-let server = new StaticServer({localOnly : true });
+let server = new StaticServer({ localOnly: true });
 // Or also valid are:
-let server = new StaticServer(8080, {localOnly : true });
-let server = new StaticServer(8080, path, {localOnly : true });
-
+let server = new StaticServer(8080, { localOnly: true });
+let server = new StaticServer(8080, path, { localOnly: true });
 ```
 
 If the server should not pause when the app is in the background, set `keepAlive` to `true`
 
 ```javascript
-let server = new StaticServer({keepAlive : true });
+let server = new StaticServer({ keepAlive: true });
 ```
 
 Passing `0` as the port number will cause a random port to be assigned every time the server starts.
 It will reset to a new random port each time the server unpauses, so this should only be used with `keepAlive`.
 
 ```javascript
-let server = new StaticServer(0, {keepAlive : true });
+let server = new StaticServer(0, { keepAlive: true });
 ```
 
 ## Credits
 
-* iOS server: [GCDWebServer](https://github.com/swisspol/GCDWebServer)
-* Android server: [NanoHttpd Webserver](https://github.com/NanoHttpd/nanohttpd)
+- iOS server: [GCDWebServer](https://github.com/swisspol/GCDWebServer)
+- Android server: [NanoHttpd Webserver](https://github.com/NanoHttpd/nanohttpd)
 
 Thanks to [CorHttpd](https://github.com/floatinghotpot/cordova-httpd) and [react-native-httpserver](https://gitlab.com/base.io/react-native-httpserver#README) for the basis of this library.
